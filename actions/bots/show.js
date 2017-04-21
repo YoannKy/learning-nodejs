@@ -2,17 +2,27 @@ module.exports = (server) => {
     const Bot = server.models.Bot;
 
     return (req, res, next) => {
-        let query = Bot.findOne({id: req.params.id, owner: req.userId})
-            .populate('weapons');
+        if(req.isAuthenticated == false) {
+            Bot.findOne({ _id: req.params.id,'owner': null })
+            .then(ensureOne)
+            .then(sendResult)
+            .catch(res.error);
+        } else {
+            Bot.findOne({ _id: req.params.id, $or : [{'owner': req.userId},{'owner': null}] })
+            .populate({
+                path: 'weapons',
+            })
+            .then(ensureOne)
+            .then(sendResult)
+            .catch(res.error);  
+        }
 
-        query.exec((err, instance) => {
-            if (err)
-                return res.status(500).send(err);
+        function ensureOne(data) {
+            return (data) ? data : Promise.reject({code: 404});
+        }
 
-            if (!instance)
-                return res.status(404).send();
-
-            res.send(instance);
-        });
+        function sendResult(data) {
+            return res.send(data);
+        }
     }
 };

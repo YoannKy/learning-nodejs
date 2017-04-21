@@ -10,12 +10,11 @@ module.exports = (server) => {
     );
 
     router.get('/',
-        server.middlewares.ensureAuthenticated,
         server.actions.weapons.list
     );
 
     router.get('/:id',
-        server.middlewares.ensureAuthenticated,
+        server.middlewares.isAuthenticated,
         server.actions.weapons.show
     );
 

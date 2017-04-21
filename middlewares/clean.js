@@ -5,7 +5,6 @@ module.exports = (fields) => {
                 return res.status(403).send();
             }
         }
-
         next();
     };
 };

@@ -13,13 +13,7 @@ module.exports = (server) => {
     );
 
     router.get('/',
-        server.middlewares.ensureAuthenticated,
         server.actions.bots.list
-    );
-
-    router.get('/openlist',
-        server.middlewares.ensureAuthenticated,
-        server.actions.bots.openlist
     );
 
     router.get('/ownerlist',

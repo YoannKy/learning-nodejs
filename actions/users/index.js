@@ -6,6 +6,7 @@ module.exports = (server) => {
         show: require('./show')(server),
         remove: require('./remove')(server),
         assign: require('./assign')(server),
-        buy: require('./buy')(server)
+        buy: require('./buy')(server),
+        credit: require('./credit')(server),
     };
 };
