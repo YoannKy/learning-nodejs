@@ -14,6 +14,11 @@ module.exports = (server) => {
         server.actions.challenge.list
     );
 
+    router.get('/:challenge',
+        server.middlewares.ensureAuthenticated,
+        server.actions.challenge.show
+    );
+
     router.post('/choose/:challenge',
         server.middlewares.ensureAuthenticated,
         server.middlewares.ensureBodyFields('choice'),
