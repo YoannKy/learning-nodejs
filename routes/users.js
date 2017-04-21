@@ -12,6 +12,11 @@ module.exports = (server) => {
         server.actions.users.list
     );
 
+    router.get('/palmares',
+        server.middlewares.ensureAuthenticated,
+        server.actions.users.palmares
+    );
+
     router.get('/:id',
         server.actions.users.show
     );

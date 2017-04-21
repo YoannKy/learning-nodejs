@@ -9,6 +9,7 @@ module.exports = (server) => {
     server.models = {
         Bot: require('./Bot'),
         Weapon: require('./Weapon'),
-        User: require('./User')
+        User: require('./User'),
+        Challenge: require('./Challenge')
     };
 };

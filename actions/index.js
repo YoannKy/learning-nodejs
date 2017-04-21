@@ -3,6 +3,7 @@ module.exports = (server) => {
         bots: require('./bots')(server),
         weapons: require('./weapons')(server),
         users: require('./users')(server),
+        challenge: require('./challenges')(server),
         auth: require('./auth')(server)
     };
 };
