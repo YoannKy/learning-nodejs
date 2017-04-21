@@ -4,6 +4,7 @@ module.exports = (server) => {
         update: require('./update')(server),
         list: require('./list')(server),
         show: require('./show')(server),
-        remove: require('./remove')(server)
+        remove: require('./remove')(server),
+        ownerweapons: require('./ownerweapons')(server),
     };
 };

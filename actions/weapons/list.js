@@ -2,7 +2,7 @@ module.exports = (server) => {
     const Weapon = server.models.Weapon;
 
     return (req, res, next) => {
-        Weapon.find((err, instances) => {
+        Weapon.find({'owner': null}, (err, instances) => {
             if (err)
                 return res.status(500).send(err);
 

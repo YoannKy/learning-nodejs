@@ -1,10 +1,11 @@
 const router = require('express').Router();
 
 module.exports = (server) => {
-
     router.post('/',
         server.middlewares.bodyParser.json(),
         server.middlewares.ensureBodyFields(server.models.Weapon.schema),
+        server.middlewares.ensureAuthenticated,
+        server.middlewares.ensureIsAdmin,
         server.actions.weapons.create
     );
 
@@ -13,15 +14,25 @@ module.exports = (server) => {
     );
 
     router.get('/:id',
+        server.middlewares.isAuthenticated,
         server.actions.weapons.show
+    );
+
+    router.get('/ownerweapons',
+        server.middlewares.ensureAuthenticated,
+        server.actions.weapons.ownerweapons
     );
 
     router.put('/:id',
         server.middlewares.bodyParser.json(),
+        server.middlewares.ensureAuthenticated,
+        server.middlewares.ensureIsAdmin,
         server.actions.weapons.update
     );
 
     router.delete('/:id',
+        server.middlewares.ensureAuthenticated,
+        server.middlewares.ensureIsAdmin,
         server.actions.weapons.remove
     );
 

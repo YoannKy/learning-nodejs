@@ -25,6 +25,7 @@ module.exports = (server) => {
                     return unauthorized();
 
                 req.userId = token.userId;
+                req.role   = user.role
                 next();
             });
         });

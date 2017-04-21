@@ -3,6 +3,9 @@ module.exports = (server) => {
     const User = server.models.User;
 
     return (req, res) => {
+        if (req.role != 'admin') {
+                return res.status(403).send();
+        }
         let bot = new Bot(req.body);
         bot.user = req.userId;
 
