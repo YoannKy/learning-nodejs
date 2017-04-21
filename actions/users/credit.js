@@ -2,8 +2,7 @@ module.exports = (server) => {
     const User = server.models.User;
     return (req, res) => {
 
-            findUSer()
-            .then(findUser)
+            findUser()
             .then(ensureNone)
             .then(creditUser)
             .then(res.noContent)
@@ -20,6 +19,6 @@ module.exports = (server) => {
             function creditUser(user) {
                 user.credit += req.body.credit;
                 return user.save();
-            }    
+            }
     };
 };
