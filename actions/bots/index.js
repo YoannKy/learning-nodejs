@@ -6,6 +6,8 @@ module.exports = (server) => {
         show: require('./show')(server),
         remove: require('./remove')(server),
         assign: require('./assign')(server),
-        drop: require('./drop')(server)
+        drop: require('./drop')(server),
+        openlist: require('./openlist')(server),
+        ownerlist: require('./ownerlist')(server)
     };
 };

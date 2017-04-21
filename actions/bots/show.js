@@ -2,7 +2,7 @@ module.exports = (server) => {
     const Bot = server.models.Bot;
 
     return (req, res, next) => {
-        let query = Bot.findById(req.params.id)
+        let query = Bot.findOne({id: req.params.id, owner: req.userId})
             .populate('weapons');
 
         query.exec((err, instance) => {

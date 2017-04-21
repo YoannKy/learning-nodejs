@@ -3,6 +3,7 @@ module.exports = (server) => {
         bodyParser: require('body-parser'),
         ensureBodyFields: require('./ensureBodyFields'),
         ensureAuthenticated: require('./ensureAuthenticated')(server),
+        ensureIsAdmin: require('./ensureIsAdmin'),
         clean: require('./clean'),
         logger: require('./logger'),
         res: require('./res')

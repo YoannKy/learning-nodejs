@@ -10,16 +10,25 @@ module.exports = (server) => {
             if (!weapon)
                 return res.status(404).send();
 
+            if (!weapon.owner)
+                return res.status(204).send();
+            User.findById(weapon.owner, (err, bot) => {
+                user.weapons.remove(weapon._id);
+                user.credit += weapon.price;
+                user.save((err, data) => {
+                    if (err)
+                        return res.status(500).send(err);
+                });
+            })
             if (!weapon.bot)
                 return res.status(204).send();
-
+            
             Bot.findById(weapon.bot, (err, bot) => {
                 bot.weapons.remove(weapon._id);
                 bot.slots ++;
                 bot.save((err, data) => {
                     if (err)
                         return res.status(500).send(err);
-
                     res.status(204).send();
                 });
             })

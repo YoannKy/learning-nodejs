@@ -11,13 +11,24 @@ const WeaponSchema = Schema({
         type: String,
         required: true
     },
-    weight: {
+    description: {
+        type: String
+    },
+    capacity: {
+        type: Number,
+        required: true
+    },
+    price: {
         type: Number,
         required: true
     },
     bot: {
         type: Schema.Types.ObjectId,
         ref: 'Bot'
+    },
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }
 });
 

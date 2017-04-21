@@ -19,7 +19,15 @@ const UserSchema = Schema({
     bots: [{
         type: Schema.Types.ObjectId,
         ref: 'Bot'
-    }]
+    }],
+    role: {
+        type: String,
+        default: 'user'
+    },
+    credit: {
+        type: Number,
+        default: 0       
+    }
 });
 
 UserSchema.plugin(timestamps);
