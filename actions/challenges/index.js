@@ -5,5 +5,6 @@ module.exports = (server) => {
         choose: require('./choose')(server),
         selectBot: require('./selectBot')(server),
         kombat: require('./kombat')(server),
+        show: require('./show')(server),
     };
 };
