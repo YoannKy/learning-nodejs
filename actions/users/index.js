@@ -5,9 +5,9 @@ module.exports = (server) => {
         list: require('./list')(server),
         show: require('./show')(server),
         remove: require('./remove')(server),
-        palmares: require('./palmares')(server)
+        palmares: require('./palmares')(server),
         assign: require('./assign')(server),
         buy: require('./buy')(server),
-        credit: require('./credit')(server),
+        credit: require('./credit')(server)
     };
 };
