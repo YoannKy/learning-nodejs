@@ -1,7 +1,7 @@
 module.exports = (server) => {
     const Weapon = server.models.Weapon;
     const Bot = server.models.Bot;
-
+    const User = server.models.User;
     return (req, res, next) => {
         Weapon.findByIdAndRemove(req.params.id, (err, weapon) => {
             if (err)
@@ -12,7 +12,7 @@ module.exports = (server) => {
 
             if (!weapon.owner)
                 return res.status(204).send();
-            User.findById(weapon.owner, (err, bot) => {
+            User.findById(weapon.owner, (err, user) => {
                 user.weapons.remove(weapon._id);
                 user.credit += weapon.price;
                 user.save((err, data) => {
@@ -22,7 +22,6 @@ module.exports = (server) => {
             })
             if (!weapon.bot)
                 return res.status(204).send();
-            
             Bot.findById(weapon.bot, (err, bot) => {
                 bot.weapons.remove(weapon._id);
                 bot.slots ++;

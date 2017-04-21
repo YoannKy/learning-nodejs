@@ -20,6 +20,10 @@ const UserSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'Bot'
     }],
+    weapons: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Weapon'
+    }],
     role: {
         type: String,
         default: 'user'
